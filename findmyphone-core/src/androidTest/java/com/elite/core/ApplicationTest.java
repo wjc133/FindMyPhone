@@ -1,4 +1,4 @@
-package com.elite.findmyphone_core;
+package com.elite.core;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

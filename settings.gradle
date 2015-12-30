@@ -1,1 +1,1 @@
-include ':app', ':findmyphone-core'
+include ':app', ':findmyphone-core', ':findmyphone-library:HttpVisitor'
