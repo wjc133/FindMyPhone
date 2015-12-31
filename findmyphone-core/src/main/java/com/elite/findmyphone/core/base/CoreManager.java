@@ -115,8 +115,8 @@ public class CoreManager {
     /**
      * 移除对象对某个接口的监听
      *
-     * @param clientClass
-     * @param client
+     * @param clientClass 某个监听接口
+     * @param client 监听者
      */
     public static void removeClient(Class<? extends CoreClient> clientClass, CoreClient client) {
 
@@ -136,7 +136,7 @@ public class CoreManager {
     /**
      * 移除该对象所有监听接口
      *
-     * @param client
+     * @param client 监听者
      */
     public static void removeClient(CoreClient client) {
 
@@ -155,8 +155,8 @@ public class CoreManager {
     /**
      * 返回监听该接口的对象列表
      *
-     * @param clientClass
-     * @return
+     * @param clientClass 监听接口
+     * @return 所有监听者的集合
      */
     public static List<CoreClient> getClients(Class<? extends CoreClient> clientClass) {
 
@@ -180,8 +180,8 @@ public class CoreManager {
     /**
      * 执行回调接口
      *
-     * @param clientClass
-     * @param callBack
+     * @param clientClass 回调接口
+     * @param callBack 回调接口
      */
     public static void notifyClients(Class<? extends CoreClient> clientClass, ICallBack callBack) {
         if (clientClass == null || callBack == null) {
@@ -208,9 +208,9 @@ public class CoreManager {
      * 注意：所有用addClient和addEventListener注册了此接口的对象都会被回调
      * 注意：methodName所指定函数的参数列表个数必须匹配。目前没有对参数类型严格检查，使用时要注意
      *
-     * @param clientClass
-     * @param methodName
-     * @param args
+     * @param clientClass 监听接口
+     * @param methodName 方法名
+     * @param args 参数列表
      */
     public static void notifyClients(Class<? extends CoreClient> clientClass, String methodName, Object... args) {
 
