@@ -2,6 +2,7 @@ package com.elite.findmyphone;
 
 import android.app.Application;
 
+import com.elite.findmyphone.common.Env;
 import com.elite.findmyphone.core.utils.BasicConfig;
 
 /**
@@ -18,5 +19,7 @@ public class FmpApplication extends Application {
 
     private void init() {
         BasicConfig.INSTANCE.setAppContext(getApplicationContext());
+
+        Env.INSTANCE.init();
     }
 }
