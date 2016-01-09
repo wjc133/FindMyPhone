@@ -1,10 +1,11 @@
 package com.elite.findmyphone.httpvisitor;
 
 /**
- * Created by wjc133.
- * Date: 2016/1/8
- * Time: 17:41
- * Description:真正对的网络操作在这里
+ * Create by wjc133
+ * Date: 2016/1/7
+ * Time: 11:30
+ * 网络工作类，负责网络请求
  */
 public class NetWorker {
+
 }

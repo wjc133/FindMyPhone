@@ -1,8 +1,6 @@
 package com.elite.findmyphone.httpvisitor;
 
 import com.android.volley.NetworkDispatcher;
-import com.android.volley.Request;
-import com.android.volley.ResponseDelivery;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -47,7 +45,7 @@ public class RequestQueue {
         //有没停止的任务先全都停掉
         stop();
         for (int i = 0; i < mDispathers.length; i++) {
-            NetworkDispatcher networkDispatcher = new NetworkDispatcher(mNetworkQueue, mNetWorker, ResponseDelivery delivery);
+            NetworkDispatcher networkDispatcher = new NetworkDispatcher(mNetworkQueue, mNetWorker, delivery);
             mDispathers[i] = networkDispatcher;
             networkDispatcher.start();
         }
@@ -59,6 +57,10 @@ public class RequestQueue {
                 mDispathers[i].quit();
             }
         }
+    }
+
+    public void finish(Request request) {
+        // TODO: 2016/1/9 something
     }
 
     /**
