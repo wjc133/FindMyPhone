@@ -11,7 +11,8 @@ import java.util.concurrent.BlockingQueue;
  * Created by wjc133.
  * Date: 2016/1/10
  * Time: 23:37
- * Description:
+ * Description:这个类起到一个枢纽的作用，它将一个网络请求从请求队列中取出，
+ * 如果这个请求没有被取消，那么则发起网络请求，并将请求结果处理后返还给Request，由它负责通知给调用方。
  */
 public class NetworkDispatcher extends Thread {
     private final BlockingQueue<Request<?>> mQueue;
@@ -37,7 +38,6 @@ public class NetworkDispatcher extends Thread {
         Request<?> request;
         while (true) {
             long startTimeMs = SystemClock.elapsedRealtime();
-            request = null;
             try {
                 request = mQueue.take();
             } catch (InterruptedException e) {

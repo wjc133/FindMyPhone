@@ -14,7 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Create by wjc133
  * Date: 2016/1/7
  * Time: 11:27
- * 请求队列的作用主要是一个用于盛放请求的容器
+ * 请求队列的作用主要是一个用于盛放请求的容器，它包含多个NetworkDispatcher同时工作，负责取出请求，发送请求和
+ * 返回响应。
  */
 public class RequestQueue {
     /**
@@ -91,9 +92,9 @@ public class RequestQueue {
     }
 
     public void stop() {
-        for (int i = 0; i < mDispatchers.length; i++) {
-            if (mDispatchers[i] != null) {
-                mDispatchers[i].quit();
+        for (NetworkDispatcher mDispatcher : mDispatchers) {
+            if (mDispatcher != null) {
+                mDispatcher.quit();
             }
         }
     }
