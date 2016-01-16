@@ -1,5 +1,8 @@
 package com.elite.findmyphone.core.base;
 
+import com.elite.findmyphone.core.weather.WeatherCore;
+import com.elite.findmyphone.core.weather.WeatherCoreImpl;
+
 /**
  * Create by wjc133
  * Date: 2015/12/30
@@ -7,6 +10,8 @@ package com.elite.findmyphone.core.base;
  */
 public class CoreRegisterCenter {
     public static void registerCore() {
-
+        if (!CoreFactory.hasRegisteredCoreClass(WeatherCore.class)) {
+            CoreFactory.registerCoreClass(WeatherCore.class, WeatherCoreImpl.class);
+        }
     }
 }

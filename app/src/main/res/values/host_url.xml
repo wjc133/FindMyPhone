@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="dev_tcloud_host">123.456.789.123:6666</string>
+    <string name="dev_baidu_host">apis.baidu.com</string>
 </resources>

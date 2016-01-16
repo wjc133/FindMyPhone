@@ -20,6 +20,7 @@ public class UriManager {
     }
 
     public static void initDevUri() {
-        UriProvider.init(appContext.getString(R.string.dev_tcloud_host));
+        UriProvider.init(appContext.getString(R.string.dev_tcloud_host),
+                appContext.getString(R.string.dev_baidu_host));
     }
 }

@@ -41,6 +41,9 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      * 当前response是否已经被分发
      **/
     private boolean mResponseDelivered = false;
+    /**
+     * tag主要用于批量取消请求
+     */
     private Object mTag;
 
     //为什么只有ErrorListener没有Listener

@@ -33,4 +33,13 @@ public class ServerResult<T> {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "ServerResult{" +
+                "data=" + data +
+                ", code=" + code +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

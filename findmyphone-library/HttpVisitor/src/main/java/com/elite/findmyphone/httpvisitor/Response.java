@@ -13,11 +13,11 @@ public class Response<T> {
     public final T result;
 
     public interface Listener<T> {
-        public void onResponse(T response);
+        void onResponse(T response);
     }
 
     public interface ErrorListener {
-        public void onErrorResponse(HttpVisitorError exception);
+        void onErrorResponse(HttpVisitorError exception);
     }
 
 

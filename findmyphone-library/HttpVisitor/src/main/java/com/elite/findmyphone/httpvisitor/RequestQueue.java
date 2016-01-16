@@ -4,9 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -50,17 +48,13 @@ public class RequestQueue {
      * 请求分发员
      */
     private final ResponseDelivery mDelivery;
-    /**
-     * 当前已经加入到RequestQueue对象中的请求集合，可能还未分配到网络请求队列中
-     **/
-    private final Set<Request<?>> mCurrentRequests = new HashSet<>();
 
     /**
      * 默认的网络请求线程池大小
      **/
     private static final int DEFAULT_NETWORK_THREAD_POOL_SIZE = 4;
 
-    public RequestQueue(NetWorker worker, int threadPoolSize,ResponseDelivery delivery) {
+    public RequestQueue(NetWorker worker, int threadPoolSize, ResponseDelivery delivery) {
         this.mNetWorker = worker;
         this.mDispatchers = new NetworkDispatcher[threadPoolSize];
         this.mDelivery = delivery;
@@ -72,11 +66,8 @@ public class RequestQueue {
 
     public <T> Request<T> add(Request<T> request) {
         request.setRequestQueue(this);
-        synchronized (mCurrentRequests) {
-            mCurrentRequests.add(request);
-        }
         //给request编序号
-        request.setSequence(getSquenceNumber());
+        request.setSequence(getSequenceNumber());
         mNetworkQueue.add(request);
         return request;
     }
@@ -99,12 +90,10 @@ public class RequestQueue {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public <T> void finish(Request<T> request) {
-        synchronized (mCurrentRequests) {
-            mCurrentRequests.remove(request);
-        }
         synchronized (mFinishedListeners) {
-            for (RequestFinishedListener<T> listener : mFinishedListeners) {
+            for (RequestFinishedListener listener : mFinishedListeners) {
                 listener.onRequestFinished(request);
             }
         }
@@ -121,8 +110,8 @@ public class RequestQueue {
      * 通过Request拦截器取消请求
      **/
     public void cancelAll(RequestFilter filter) {
-        synchronized (mCurrentRequests) {
-            for (Request<?> request : mCurrentRequests) {
+        synchronized (mNetworkQueue) {
+            for (Request<?> request : mNetworkQueue) {
                 if (filter.apply(request)) {
                     request.cancel();
                 }
@@ -152,11 +141,11 @@ public class RequestQueue {
      *
      * @return 序列号
      */
-    private int getSquenceNumber() {
+    private int getSequenceNumber() {
         return mSequenceGenerator.incrementAndGet();
     }
 
-    public  <T> void addRequestFinishedListener(RequestFinishedListener<T> listener) {
+    public <T> void addRequestFinishedListener(RequestFinishedListener<T> listener) {
         synchronized (mFinishedListeners) {
             mFinishedListeners.add(listener);
         }
@@ -165,7 +154,7 @@ public class RequestQueue {
     /**
      * Remove a RequestFinishedListener. Has no effect if listener was not previously added.
      */
-    public  <T> void removeRequestFinishedListener(RequestFinishedListener<T> listener) {
+    public <T> void removeRequestFinishedListener(RequestFinishedListener<T> listener) {
         synchronized (mFinishedListeners) {
             mFinishedListeners.remove(listener);
         }
