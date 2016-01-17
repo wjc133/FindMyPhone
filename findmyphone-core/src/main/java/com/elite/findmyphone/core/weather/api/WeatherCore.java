@@ -1,4 +1,4 @@
-package com.elite.findmyphone.core.weather;
+package com.elite.findmyphone.core.weather.api;
 
 import com.elite.findmyphone.api.ServerResult;
 import com.elite.findmyphone.api.weather.City;

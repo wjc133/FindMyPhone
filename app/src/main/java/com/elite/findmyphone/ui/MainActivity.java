@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.elite.findmyphone.R;
 import com.elite.findmyphone.api.ServerResult;
 import com.elite.findmyphone.api.weather.City;
-import com.elite.findmyphone.core.weather.WeatherCoreImpl;
+import com.elite.findmyphone.core.weather.api.WeatherCoreImpl;
 
 import java.util.List;
 

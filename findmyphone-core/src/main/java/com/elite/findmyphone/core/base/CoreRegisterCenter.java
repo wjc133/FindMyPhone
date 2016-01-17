@@ -1,7 +1,7 @@
 package com.elite.findmyphone.core.base;
 
-import com.elite.findmyphone.core.weather.WeatherCore;
-import com.elite.findmyphone.core.weather.WeatherCoreImpl;
+import com.elite.findmyphone.core.weather.api.WeatherCore;
+import com.elite.findmyphone.core.weather.api.WeatherCoreImpl;
 
 /**
  * Create by wjc133
