@@ -16,7 +16,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -29,10 +31,17 @@ public class WeatherCoreImpl extends ApiCore implements WeatherCore {
     @SuppressWarnings("unchecked")
     @Override
     public List<City> getCityInfo(String cityName) throws CoreException {
-        String url = UriProvider.CITY_INFO_GET;
+        String url = UriProvider.CITY_INFO_GET + "?cityname=" + cityName;
         ServerResult<List<City>> result;
         RequestFuture<JSONObject> future = RequestFuture.newFuture();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, future, future);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, future, future) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("apikey", "e5cba1557b738ff5e717f7558850ae8f");
+                return headers;
+            }
+        };
         HttpUtils.INSTANCE.getRequestQueue().add(request);
         try {
             JSONObject response = future.get();

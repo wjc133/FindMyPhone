@@ -24,9 +24,11 @@
             android:text="start" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/texture"
+    <ListView
+        android:id="@+id/list_city"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

@@ -34,7 +34,7 @@ public class UriProvider {
         COMMOND_GET = TCLOUD_HOST + "/fmp/commond";
         UPLOAD_LOCATE = TCLOUD_HOST + "/fmp/upload-locate";
 
-        CITY_INFO_GET = BAIDU_HOST + "/apistore/weatherservice/cityname";
-        WEATHER_GET = BAIDU_HOST + "/apistore/weatherservice/citylist";
+        CITY_INFO_GET = BAIDU_HOST + "/apistore/weatherservice/citylist";
+        WEATHER_GET = BAIDU_HOST + "/apistore/weatherservice/cityname";
     }
 }

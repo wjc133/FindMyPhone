@@ -5,17 +5,17 @@ import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.elite.findmyphone.R;
 import com.elite.findmyphone.api.weather.City;
-import com.elite.findmyphone.api.weather.Weather;
 import com.elite.findmyphone.core.CoreError;
 import com.elite.findmyphone.core.common.model.UIResponse;
 import com.elite.findmyphone.core.loader.Data;
 import com.elite.findmyphone.core.loader.callback.UIResponseLoaderCallback;
 import com.elite.findmyphone.core.weather.loader.CityLoader;
+import com.elite.findmyphone.ui.adapter.CityListAdapter;
 import com.elite.findmyphone.ui.common.BaseActivity;
 
 import java.util.List;
@@ -27,8 +27,8 @@ import java.util.List;
  */
 public class WeatherActivity extends BaseActivity {
     private Button startBtn;
-    private TextView resultTextView;
     private EditText input;
+    private ListView cityListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,8 @@ public class WeatherActivity extends BaseActivity {
         setContentView(R.layout.activity_weather);
 
         startBtn = (Button) findViewById(R.id.btn_start);
-        resultTextView = (TextView) findViewById(R.id.texture);
         input = (EditText) findViewById(R.id.edit_cityname);
+        cityListView = (ListView) findViewById(R.id.list_city);
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,8 @@ public class WeatherActivity extends BaseActivity {
     }
 
     private void loadData(List<City> data) {
-        resultTextView.setText(data.toString());
+        CityListAdapter adapter = new CityListAdapter(this, data);
+        cityListView.setAdapter(adapter);
     }
 
 }
