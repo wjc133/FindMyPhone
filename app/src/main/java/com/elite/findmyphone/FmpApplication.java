@@ -26,6 +26,6 @@ public class FmpApplication extends Application {
         BasicConfig.INSTANCE.setAppContext(getApplicationContext());
         HttpUtils.INSTANCE.setRequestQueue(requestQueue);
 
-        Env.INSTANCE.init();
+        Env.instance().init();
     }
 }

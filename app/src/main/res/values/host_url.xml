@@ -2,4 +2,10 @@
 <resources>
     <string name="dev_tcloud_host">123.456.789.123:6666</string>
     <string name="dev_baidu_host">apis.baidu.com</string>
+
+    <string name="test_tcloud_host">123.456.789.123:6666</string>
+    <string name="test_baidu_host">apis.baidu.com</string>
+
+    <string name="product_tcloud_host">123.456.789.123:6666</string>
+    <string name="product_baidu_host">apis.baidu.com</string>
 </resources>

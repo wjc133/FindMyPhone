@@ -13,10 +13,29 @@ import com.elite.findmyphone.core.UriProvider;
 public class UriManager {
     private static Context appContext;
 
-    public static void init(Context context) {
-        // TODO: 2016/1/6 这里暂时不区分开发环境，如果有需要可添加
+    public static void init(Env.UriSetting uriSetting, Context context) {
+        if (null == uriSetting || null == context) {
+            return;
+        }
+
         appContext = context;
-        initDevUri();
+        if (uriSetting == Env.UriSetting.DEV) {//开发环境地址
+            initDevUri();
+        } else if (uriSetting == Env.UriSetting.PRODUCT) {//生产环境地址
+            initProductUri();
+        } else if (uriSetting == Env.UriSetting.TEST) {//测试环境地址
+            initTestUri();
+        }
+    }
+
+    private static void initTestUri() {
+        UriProvider.init(appContext.getString(R.string.test_tcloud_host),
+                appContext.getString(R.string.test_baidu_host));
+    }
+
+    private static void initProductUri() {
+        UriProvider.init(appContext.getString(R.string.product_tcloud_host),
+                appContext.getString(R.string.product_baidu_host));
     }
 
     public static void initDevUri() {
