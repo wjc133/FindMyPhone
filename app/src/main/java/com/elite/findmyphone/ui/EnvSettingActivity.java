@@ -1,7 +1,6 @@
 package com.elite.findmyphone.ui;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +13,7 @@ import com.elite.findmyphone.common.Env;
  * Date: 2016/1/19
  * Time: 13:19
  */
-public class EnvSettingActivity extends PreferenceActivity{
+public class EnvSettingActivity extends AppCompatActivity{
     private Env.UriSetting uriSetting;
 
     @Override
