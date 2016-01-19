@@ -1,4 +1,6 @@
-package com.elite.findmyphone.core;
+package com.elite.findmyphone.core.common.exception;
+
+import com.elite.findmyphone.core.CoreError;
 
 /**
  * Create by wjc133

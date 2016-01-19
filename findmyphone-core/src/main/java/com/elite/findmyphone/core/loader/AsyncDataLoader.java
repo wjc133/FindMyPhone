@@ -9,7 +9,7 @@ import android.content.Context;
  * Time: 14:00
  * Description: 异步加载数据的Loader
  */
-public abstract class AsyncDataLoader<T> extends BaseLoader<T> {
+public abstract class AsyncDataLoader<T> extends BaseAsyncLoader<Data<T>> {
 
     public AsyncDataLoader(Context context) {
         super(context);

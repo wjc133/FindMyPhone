@@ -6,7 +6,10 @@ package com.elite.findmyphone.core;
  * Time: 10:30
  */
 public enum CoreError {
-    NETWORK_ERROR(1000);
+    SERVER_ERROR(999),
+    NETWORK_ERROR(1000),
+
+    MISSING_APIKEY(300202, "Missing apikey");
 
     private int code;
     private String message;
@@ -37,5 +40,17 @@ public enum CoreError {
 
     public Throwable throwable() {
         return throwable;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setThrowable(Throwable throwable) {
+        this.throwable = throwable;
     }
 }

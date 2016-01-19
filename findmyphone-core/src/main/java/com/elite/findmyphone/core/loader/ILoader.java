@@ -7,6 +7,6 @@ package com.elite.findmyphone.core.loader;
  * Time: 10:02
  */
 public interface ILoader {
-    boolean haveDate();
+    boolean haveData();
     boolean isDestroyOnLoadFinish();
 }

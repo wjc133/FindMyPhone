@@ -5,6 +5,7 @@ import com.elite.findmyphone.api.weather.City;
 import com.elite.findmyphone.api.weather.Weather;
 import com.elite.findmyphone.core.ApiCore;
 import com.elite.findmyphone.core.UriProvider;
+import com.elite.findmyphone.core.common.exception.CoreException;
 import com.elite.findmyphone.core.utils.HttpUtils;
 import com.elite.findmyphone.httpvisitor.Request;
 import com.elite.findmyphone.httpvisitor.RequestFuture;
@@ -27,22 +28,25 @@ import java.util.concurrent.ExecutionException;
 public class WeatherCoreImpl extends ApiCore implements WeatherCore {
     @SuppressWarnings("unchecked")
     @Override
-    public ServerResult<List<City>> getCityInfo(String cityName) {
+    public List<City> getCityInfo(String cityName) throws CoreException {
         String url = UriProvider.CITY_INFO_GET;
-        final ServerResult<List<City>> result = new ServerResult<>();
+        ServerResult<List<City>> result;
         RequestFuture<JSONObject> future = RequestFuture.newFuture();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, future, future);
         HttpUtils.INSTANCE.getRequestQueue().add(request);
         try {
             JSONObject response = future.get();
-            parseResponse(response, result);
+            result = parseResponse(response);
+            checkResultThrowException(result);
+            return result.getData();
         } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
-        return result;
+        return null;
     }
 
-    private void parseResponse(JSONObject response, ServerResult<List<City>> result) throws JSONException {
+    private ServerResult<List<City>> parseResponse(JSONObject response) throws JSONException {
+        ServerResult<List<City>> result = new ServerResult<>();
         result.setCode(response.getInt("errNum"));
         result.setMessage(response.getString("errMsg"));
         if ("success".equals(result.getMessage())) {
@@ -55,6 +59,7 @@ public class WeatherCoreImpl extends ApiCore implements WeatherCore {
             }
             result.setData(cities);
         }
+        return result;
     }
 
     private City parseCity(JSONObject object) throws JSONException {
@@ -68,7 +73,7 @@ public class WeatherCoreImpl extends ApiCore implements WeatherCore {
     }
 
     @Override
-    public ServerResult<Weather> getWeather(String cityName) {
+    public Weather getWeather(String cityName) {
         return null;
     }
 }

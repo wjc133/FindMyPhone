@@ -128,7 +128,7 @@ public abstract class BaseLoader<T> extends AsyncTaskLoader<T> implements ILoade
     }
 
     @Override
-    public boolean haveDate() {
+    public boolean haveData() {
         return null != mData;
     }
 
